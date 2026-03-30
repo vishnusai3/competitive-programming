@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool checkStrings(string s1, string s2) {
+        int n = s1.size();
+        string oddstr1,evenstr1,oddstr2,evenstr2;
+        for(int i = 0;i<n;i++){
+            if(i&1){
+                oddstr1+=s1[i];
+                oddstr2+=s2[i];
+            }
+            else {
+                evenstr1+=s1[i];
+                evenstr2+=s2[i];
+            }
+        }
+        sort(oddstr1.begin(),oddstr1.end());
+        sort(oddstr2.begin(),oddstr2.end());
+        sort(evenstr1.begin(),evenstr1.end());
+        sort(evenstr2.begin(),evenstr2.end());
+        if(oddstr1 == oddstr2 && evenstr1 == evenstr2) return true;
+        return false;
+    }
+};
