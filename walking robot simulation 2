@@ -1,0 +1,53 @@
+class Robot {
+vector<pair<int,int>> p = {{1,0},{0,1},{-1,0},{0,-1}};
+int n =0;
+int m = 0;
+int x = 0;
+int y = 0;
+int dir = 0;
+public:
+    Robot(int width, int height) {
+        m = width;
+        n = height;
+        dir = 0;
+    }
+    
+    void step(int num) {
+        int cycle = 2 * (m + n - 2);
+        int val = num % cycle;
+        int newx = x;
+        int newy = y;
+        if (val == 0 && num > 0) val = cycle;
+        while(val){
+             if(newx+p[dir].first>=m || newy+p[dir].second>=n || newx+p[dir].first<0 || newy+p[dir].second<0){
+                dir= (dir+1)%4;
+                continue;
+            }
+            newx+=p[dir].first;
+            newy+=p[dir].second;
+            val--;
+        }
+        x = newx;
+        y = newy;
+        
+    }
+    
+    vector<int> getPos() {
+        return {x,y};
+    }
+    
+    string getDir() {
+        if(dir==0) return "East";
+        else if(dir == 1) return "North";
+        else if(dir == 2) return "West";
+        else return "South";
+    }
+};
+
+/**
+ * Your Robot object will be instantiated and called as such:
+ * Robot* obj = new Robot(width, height);
+ * obj->step(num);
+ * vector<int> param_2 = obj->getPos();
+ * string param_3 = obj->getDir();
+ */
