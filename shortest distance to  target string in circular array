@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int closestTarget(vector<string>& words, string target, int startIndex) {
+        int n= words.size();
+        int ans = -1;
+        for(int i = 0;i<n;i++){
+            int frwd = (startIndex+i)%n;
+            int rev  = (startIndex-i+n)%n;
+            if(words[frwd]==target || words[rev]==target) {
+                ans = i;
+                break;
+            }
+        }
+        return ans;
+    }
+};
